@@ -1,0 +1,39 @@
+<extend name="account_common" />
+<block name="usercontent">
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div class="user_con_pl_left"><span class="user_con_pl_left_title">视频</span><span style="font-size: 12px;margin-left: 10px;">VIDEO</span></div>
+			<div class="user_con_pl_right"><a href="{{:url('my/pub')}}" style="display: block;color:#fff;">发布作品</a></div>
+		</div>
+		<ul class="user_index clear" id="film_ul">
+			<foreach name="cval" item="vo" key="k">
+			<li  class="user_index_li fl" <if condition="$k%3 eq 2">style="margin-right: 0;"</if>>
+				<a href="{{:url('forum/film')}}?id={{$vo.id}}">
+				<div class="index_img">
+					<img src="{{$vo.prourl}}" />
+					<div class="index_img_bg"></div>
+					<div class="index_img_bg_bottom"><span class="index_img_bg_1">{{$vo.mtype}}</span></div>
+				</div>
+				<div class="user_index_li_bottom">
+					<empty name="Think.session.userid">
+						<h2>{{$vo.pname}}</h2>
+						
+						<div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>{{$vo.count}}</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>{{$vo.love}}</span></div>
+						<div class="mt12"><span><img src="{{$vo.userhead}}" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">{{$vo.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{$vo.zhiwei}}</div>
+				    <else/>
+					<h2>{{$vo.pname}}</h2>
+					<div class="mt12"><span>片中职务：</span><span style="font-weight: bold;color:#353a40;">{{$userone.zhiwei}}</span></div>
+					<div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>{{$vo.count}}</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>{{$vo.love}}</span></div>
+					</empty>
+				</div>
+				</a>
+			</li>
+			</foreach>
+			
+			
+		</ul>
+		<div class="user_con_more">
+			<div id="more_film" data-id=<empty name='Think.session.userid'>{{$Think.get.uid}}<else/>{{$Think.session.userid}}</empty>>加载更多</div>
+		</div>
+	</div>
+</block>

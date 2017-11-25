@@ -1,0 +1,107 @@
+<extend name="forum_common" />
+<block name="bbscontent">	
+	
+	<div class="forum_film">
+		<!--<div class="forum_film_banner"> </div>-->
+		<img src="__PC__/images/filmbanner.jpg" class="forum_film_banner">
+		<div class="film_header w1200">
+			<!--<img src="__PC__/images/filmbg.jpg" class="film_header_bg"/>
+			<img src="__PC__/images/shi.png" class="film_header_btn"/>-->
+			<iframe border="0" frameborder="0" height="500" marginheight="0" marginwidth="0" scrolling="no" src="{{$filmval.path}}" width="100%"></iframe>
+		</div>
+		<div class="film_main w1200" style="margin-top: 20px;overflow: hidden;">
+			<div class="film_main_left fl">
+				<div class="film_main_left_1">
+					<h3>{{$filmval.pname}}</h3>
+				</div>
+				<div class="film_main_left_2">
+					<span>{{$filmval.mtype}}&nbsp;|&nbsp;{{$filmval.pdate|date="m-d H:i",###}}</span>
+				</div>
+				<div class="film_main_left_3">
+					<div>
+						<img src="__PC__/images/sanjiao.png" /> &nbsp;{{$filmcount}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					     <img src="__PC__/images/xin.png" /> &nbsp;{{$filmnums}}
+					</div>
+					<div class="film_main_left_right">
+						<span class="film_main_left_3_img"><img src="__PC__/images/msg.png" /></span>&nbsp;&nbsp;&nbsp;
+						<span class="film_main_left_3_love" <empty name="Think.session.email">onclick="window.location.href='{{:url('reg/login')}}'"<else/>id="filmlovebtn"</empty> data="{{$filmval.id}}" style="cursor: pointer;">喜欢</span>
+					</div>
+				</div>
+				<div class="film_main_left_4">
+					<h3>简介</h3>
+					<div>{{$filmval.minfo}}</div>
+				</div>
+				<div class="film_main_left_5">
+					<h3 class="film_main_left_5_h3">评论<span style="font-size: 12px;color:#ccc;margin-left: 10px;">({{$commentnums}})</span></h3>
+				</div>
+				<div class="forum_comment_middle">
+					<div class="forum_comment_middle_1" style="height: 100px;">
+						<img src="<empty name='userone.userhead'>__PC__/images/img_01.jpg<else/>{{$userone.userhead}}</empty>" class="forum_comment_middle_img"/>
+						<form action="" class="layui-form" method="post" style="overflow: hidden;height:110px;">
+							<input type="hidden" value="{{$filmval.id}}" name="mid" lay-verify="mid" class="mid"/>
+						    <input type="hidden" value="0" name="tid" lay-verify="tid"/>
+							<textarea name="commentfilm" lay-verify="commentfilm"  class="forum_comment_middle_text" style="width:636px;height:90px;"></textarea>
+						
+						<div style="position: relative;">
+							
+							
+							<input type="button"   <empty name="Think.session.email">onclick="window.location.href='{{:url('reg/login')}}'"<else/>lay-submit="" lay-filter="comment_film"</empty> class="forum_comment_top_2" style="cursor: pointer;border:none;" value="发表评论">
+						
+						</div></form>	
+					</div>
+					
+					<ul class="forum_comment_bottom" style="margin-top: 100px;">
+						<foreach name="commentval" item="commentval">
+						<li  class="forum_comment_bottom_li">
+							<div class="forum_comment_bottom_li_1"> 
+								<img src="<empty name='commentval.uhead'>__PC__/images/img_01.jpg<else/>{{$commentval.uhead}}</empty>" class="forum_comment_middle_img"/>
+							</div>
+							<div class="forum_comment_bottom_li_2" style="width:657px;margin-top: 0;">
+								<div class="forum_comment_bottom_li_2_1">{{$commentval.uname}}<span>{{$commentval.time|date="m-d H:i",###}}</span></div>
+								<div class="forum_comment_bottom_li_2_3" style="color:#9b9b9b;margin-top: 20px;"><a href="javascript:;" class="commentsfilm" data="{{$commentval.id}}">{{$commentval.content}}</a></div>
+								<div class="forum_comment_bottom_li_2_4"><span class="recommentfilm" style="cursor: pointer;" data="{{$commentval.id}}">回复({{$commentval.cnums}})</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="dopraise" style="cursor: pointer;" data="{{$commentval.id}}">赞({{$commentval.praise}})</span></div>
+							</div>
+						</li>
+						</foreach>
+						
+						<li class="forum_comment_bottom_li" style="padding-bottom: 30px;">
+							<div class="forum_comment_bottom_more"><a href="{{:url('forum/film')}}?id={{$Think.get.id}}&page=all" style="color:#7f7f7f;">更多</a></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="film_main_right fl">
+				<div class="film_main_right_top">
+					<h3 class="film_main_right_top_h3">本片创作人</h3>
+					<ul>
+						<li class="film_main_right_top_li">
+							<img src="{{$f_one.userhead}}" class="forum_comment_middle_img"/>
+							<div class="film_main_right_top_li_right">
+								<div class="film_main_right_top_li_right_1">{{$f_one.username}}</div>
+								<div class="film_main_right_top_li_right_2">{{$f_one.tech}}</div>
+							</div>
+							<div class="film_main_right_top_li_r" style="cursor:pointer;" <empty name="Think.session.email">onclick="window.location.href='{{:url('reg/login')}}'"<else/>id="connectus"</empty>>关注</div>
+						</li>
+						
+					</ul>
+				</div>
+				<div class="film_main_right_bottom">
+					<h3 class="film_main_right_top_h3" style="position: relative;">创作人的其他作品<a href="{{:url('account/index')}}?uid={{$f_one.id}}" class="film_main_right_top_a">更多</a></h3>
+					<ul>
+						<foreach name="filmlists" item="vo">
+						<li class="film_main_right_bottom_li">
+							<a href="{{:url('forum/film')}}?id={{$vo.id}}">
+							<img src="{{$vo.prourl}}" class="film_main_right_bottom_li_img"/>
+							<div class="film_main_right_top_li_right">
+								<div class="film_main_right_top_li_right_1" style="margin-bottom: 10px;">{{$vo.pname}}</div>
+								<div class="film_main_right_top_li_right_2">{{$vo.mtype}}</div>
+							</div>
+							</a>
+						</li>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>

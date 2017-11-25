@@ -1,0 +1,52 @@
+<extend name="my_common" />
+<block name="bbscontent">	
+	<div class="my_index_right fl">
+		<div class="my_index_right_my">身份认证</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">认证类型</div>
+			
+			<div class="my_index_right_my_3">个人认证</div>	
+		</div>
+		<empty name="vone">
+		
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">身份证<span style="color:red;">*</span></div>
+			<div class="my_ver_right_my_2">
+				<button type="button"  id="upidentity">上传图片</button>
+			</div>
+			<div class="my_ver_right_my_3">请上传身份证或护照的正面图片</div>
+			<div class="my_ver_right_my_4 identyinfo">
+				<span>身份证/护照</span>
+			</div>
+		</div>
+		<input type="hidden" name='identy' class="identyc" value="" />
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">入行年份</div>
+			<div class="my_index_right_my_2" style="margin-left: 60px;">
+				<select id="year" name="sex" class="my_index_right_my_birth" style="font-size: 18px;width:220px;">
+					<option>请选择</option>
+				</select>
+				
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">职业<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2" style="margin-left: 86px;">
+				<!--<select name="sex" class="my_index_right_my_birth" style="font-size: 18px;width:220px;">
+					<option>请选择</option>					
+				</select>-->
+				
+				<input type="text" name="zhiwei"  value="" id="zhiye" class="my_index_right_my_name" />
+			
+			</div>			
+		</div>		
+		
+		<div class="my_ver_right_my_submit">
+			<input type="button" value="提交" id="identysub"/>
+		</div>
+		
+		<else/>
+		<div style="text-align: center;font-size: 26px;color:red;"><span>已提交，审核中</span></div>
+		</empty>
+	</div>
+</block>

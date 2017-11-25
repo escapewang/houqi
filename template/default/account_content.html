@@ -1,0 +1,31 @@
+<extend name="account_common" />
+<block name="usercontent">
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div class="user_con_pl_left"><span class="user_con_pl_left_title">文章</span><span style="font-size: 12px;margin-left: 10px;">ARTICLE</span></div>
+			<div class="user_con_pl_right"><a href="<empty name='Think.session.email'>{{:url('reg/login')}}<else/>{{:url('account/publish')}}</empty>" style="display: block;color:#fff;">发布文章</a></div>
+		</div>
+		<ul class="user_con_main" id="content_ul">
+			<foreach name="cval" item="c_val">
+			<li  class="user_con_main_li clear">
+				<div class="con_img fl">
+					<img src="{{$c_val.thumb}}" />
+				</div>
+				<a href="{{:url('account/detail')}}?id={{$c_val.id}}" style="color:#a3a5a8;">
+					<div class="user_con_main_right fl" style="position: relative;">
+						<h2>{{$c_val.title}}</h2>
+						<div>{{$c_val.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</div>
+						<empty name="Think.session.userid">
+						<div class="mt12" style="position: absolute;bottom:50px;"><span><img src="{{$c_val.userhead}}" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">{{$c_val.name}}</span></div>
+						</empty>
+					</div>
+				</a>
+			</li>
+			</foreach>
+			
+		</ul>
+		<div class="user_con_more">
+			<div style="cursor: pointer;" id="content_more">加载更多</div>
+		</div>
+	</div>
+</block>

@@ -1,0 +1,104 @@
+<extend name="account_common" />
+<block name="usercontent">
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div class="user_con_pl_left"><span class="user_con_pl_left_title">视频</span><span style="font-size: 12px;margin-left: 10px;">VIDEO</span></div>
+			<div class="user_love_pl_right"><a href="<empty name='Think.session.userid'>{{:url('account/index')}}?uid={{$Think.get.uid}}<else/>{{:url('account/index')}}</empty>">更多>></a></div>
+		</div>
+		<ul class="user_index clear">
+			<foreach name="cval" item="vo" key="k">
+			<li  class="user_index_li fl" <if condition="$k%3 eq 2">style="margin-right: 0;margin-bottom: 5px;"<else/>style="margin-bottom: 5px;"</if>>
+				<a href="{{:url('forum/film')}}?id={{$vo.id}}">
+				<div class="index_img">
+					<img src="{{$vo.prourl}}" />
+					<div class="index_img_bg"></div>
+					<div class="index_img_bg_bottom"><span class="index_img_bg_1">广告/宣传片</span>-<span>网络电影</span></div>
+				</div>
+				<div class="user_index_li_bottom" >
+					<empty name="Think.session.userid">
+						<h2>{{$vo.pname}}</h2>
+						
+						<div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>{{$vo.count}}</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>{{$vo.love}}</span></div>
+						<div class="mt12"><span><img src="{{$vo.userhead}}" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">{{$vo.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{$vo.zhiwei}}</div>
+				    <else/>
+					<h2>{{$vo.pname}}</h2>
+					<div class="mt12"><span>片中职务：</span><span style="font-weight: bold;color:#353a40;">{{$userone.zhiwei}}</span></div>
+					<div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>{{$vo.count}}</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>{{$vo.love}}</span></div>
+				   </empty>
+				</div>
+				</a>
+			</li>
+			</foreach>
+			
+		</ul>
+		
+	</div>
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div class="user_con_pl_left"><span class="user_con_pl_left_title">文章</span><span style="font-size: 12px;margin-left: 10px;">ARTICLE</span></div>
+			<div class="user_love_pl_right"><a href="<empty name='Think.session.userid'>{{:url('account/content')}}?uid={{$Think.get.uid}}<else/>{{:url('account/content')}}</empty>">更多>></a></div>
+		</div>
+		<ul class="user_con_main">
+			<foreach name="conval" item="c_val" key="k">
+			<li  class="user_con_main_li clear" <eq name="k" value="1">style="margin-bottom: 0;"</eq>>
+				<a href="{{:url('account/detail')}}?id={{$c_val.id}}" style="color:#a3a5a8;">
+				<div class="con_img fl">
+					<img src="{{$c_val.thumb}}" />
+				</div>
+				<div class="user_con_main_right fl" style="position: relative;">
+					<h2>{{$c_val.title}}</h2>
+					<p>{{$c_val.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</p>
+					<empty name="Think.session.userid">
+						<div class="mt12" style="position: absolute;bottom:50px;"><span><img src="{{$c_val.userhead}}" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">{{$c_val.name}}</span></div>
+						</empty>
+				</div>
+				</a>
+			</li>
+			</foreach>
+			
+		</ul>
+		
+	</div>
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div class="user_con_pl_left"><span class="user_con_pl_left_title">技术交流</span><span style="font-size: 12px;margin-left: 10px;">TECHNICAL EXCHANGE</span></div>
+			<div class="user_love_pl_right"><a href="">更多>></a></div>
+		</div>
+		<div class="user_love">
+			<div class="user_love_1">
+				<div class="user_love_1_left">
+					<img src="__PC__/images/cimgpng.png" />
+					<div class="user_love_1_left_1">
+						<div style="color:#646671;font-weight: bold;font-size: 13px;">慕容雪雪</div>
+						<div style="color:#ccc;font-size: 13px;margin-top: 5px;">2017-10-29</div>
+					</div>
+					<div class="user_love_1_right">已关注</div>
+				</div>
+				
+			</div>
+			<div class="user_love_2">
+				<div class="user_love_2_left">
+					<h2 class="user_love_2_left_h">影视文案必须明白五条军规</h2>
+					<div class="user_love_2_left_con">
+						<div style="line-height: 30px;color:#878787">
+							<p>何为文案</p>
+							<p>何为文案何为文案何为文案</p>
+							<p>何为文案何为文案何为文案何为文案</p>
+							<p>何为文案何为文案何为文案何为文案何为文案何为文案何为文案</p>
+						</div>
+					</div>
+					<div class="user_love_2_left_bottom">
+						<span><img src="__PC__/images/l1.png"/></span><span class="ml5">评论：176</span>
+						<span class="ml40"><img src="__PC__/images/l3.png"/></span><span class="ml5">喜欢：80</span>
+						<span class="ml40"><img src="__PC__/images/l2.png"/></span><span class="ml5">转发：67</span>
+					</div>
+				</div>
+				<div class="user_love_2_right">
+					<img src="__PC__/images/22.png" />
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+</block>

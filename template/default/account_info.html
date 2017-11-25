@@ -1,0 +1,39 @@
+<extend name="account_common" />
+<block name="usercontent">
+	<div class="w1200 " style="padding-top:48px;">
+		<div class="user_info">
+			<table>
+				<tr class="info_h">
+					<td width=90 class="user_info_fw">性别：</td>
+					<td width=353 class="user_info_color"><eq name="uone.sex" value="1">女</eq><eq name="uone.sex" value="2">男</eq><empty name="uone.sex">保密</empty></td>
+					<td width=125 class="pl80 user_info_fw">生日：</td>
+					<td class="user_info_color">{{$uone.birth}}</td>
+				</tr>
+				<tr>
+					<td class="user_info_fw">年龄：</td>
+					<td class="user_info_color">{{$uone.age}}</td>
+					<td class="pl80 user_info_fw">星座：</td>
+					<td class="user_info_color">{{$uone.xingzuo}}</td>
+				</tr>
+				<tr>
+					<td class="user_info_fw">职位：</td>
+					<td class="user_info_color">{{$uone.zhiwei}}</td>
+					<td class="pl80 user_info_fw">技能标签：</td>
+					<td class="user_info_color">{{$uone.tech}}</td>
+				</tr>
+				<tr>
+					<td class="user_info_fw">在职公司：</td>
+					<td class="user_info_color">{{$uone.company}}</td>
+					<td class="pl80 user_info_fw">所在国家/城市：</td>
+					<td class="user_info_color">{{$uone.userhome}}</td>
+				</tr>
+				<tr>
+					<td class="user_info_fw">个人介绍：</td>
+					<td class="user_info_color">{{$uone.info}}</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</block>

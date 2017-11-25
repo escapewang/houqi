@@ -1,0 +1,83 @@
+<extend name="forum_common" />
+<block name="bbscontent">
+	<div style="width:100%;min-width: 1200px;"><img src="__PC__/images/content_banner.jpg"/ style="width:100%;min-width: 1200px;"></div>
+<div class="w1200" style="padding-bottom: 50px;">
+	<div class="forum_index_1" style="margin-bottom: 90px;">
+		<div class="forum_index_1_title">精选文章</div>
+		<div class="forum_index_1_line"></div>
+		<div class="forum_index_1_en">SELECTED ARTICLES</div>
+	</div>
+	<ul class="account_lists_hots">
+		<li class="account_lists_hots_li fl">
+			<div><img src="<empty name='fval.0.thumb'>__PC__/images/a2.jpg<else/>{{$fval.0.thumb}}</empty>"/></div>
+			<div class="account_lists_hots_li_title">
+				<div class="account_lists_hots_li_title_1">{{$fval.0.title|mb_substr=0,100,'utf-8'}}</div>
+				<div class="account_lists_hots_li_title_2">{{$fval.0.content|htmlspecialchars_decode|strip_tags|mb_substr=0,100,'utf-8'}}</div>
+				
+			</div>
+			<div class="account_lists_hots_li_con">
+				<div>{{$fval.0.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</div>
+				<div class="account_lists_hots_li_btn"><a href="{{:url('account/detail')}}?id={{$fval.0.id}}" style="display: block;">READ</a></div>
+			</div>
+		</li>
+		<li class="account_lists_hots_li fl">
+			<div class="account_lists_hots_li_con" style="background-color: #ffc237;color:#fff;">
+				<div>{{$fval.1.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</div>
+				<div class="account_lists_hots_li_btn" style="background-color: #ffb311;"><a href="{{:url('account/detail')}}?id={{$fval.1.id}}" style="display: block;">READ</a></div>
+			</div>
+			
+			<div class="account_lists_hots_li_title">
+				<div class="account_lists_hots_li_title_1">{{$fval.1.title|mb_substr=0,100,'utf-8'}}</div>
+				<div class="account_lists_hots_li_title_2">{{$fval.1.content|htmlspecialchars_decode|strip_tags|mb_substr=0,100,'utf-8'}}</div>
+				
+			</div>
+			<div><img src="<empty name='fval.1.thumb'>__PC__/images/a2.jpg<else/>{{$fval.1.thumb}}</empty>"/></div>
+		</li>
+		<li class="account_lists_hots_li fl" style="margin-right: 0;">
+			<div><img src="<empty name='fval.0.thumb'>__PC__/images/a2.jpg<else/>{{$fval.2.thumb}}</empty>"/></div>
+			
+			<div class="account_lists_hots_li_con" style="background-color: #fff;height:227px;">
+				<div class="account_lists_hots_li_title_1" style="margin-bottom: 20px;">{{$fval.2.title|mb_substr=0,100,'utf-8'}}</div>
+				<div>{{$fval.2.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</div>
+				<div class="account_lists_hots_li_btn" style="background-color: #fff;"><a href="{{:url('account/detail')}}?id={{$fval.2.id}}" style="display: block;">READ</a></div>
+			</div>
+		</li>
+	</ul>
+	<div class="forum_index_1" style="margin-bottom: 90px;">
+		<div class="forum_index_1_title">全部文章</div>
+		<div class="forum_index_1_line"></div>
+		<div class="forum_index_1_en">ALL ARTICLES</div>
+	</div>
+	<ul class="user_con_main" id="content_ul">
+		<volist name="cval" id="vo" mod="2">
+		<eq name="mod" value="1">
+		<li  class="user_con_main_li clear" style="width:1200px;height:402px;">
+			<div class="con_img fl" style="width:595px;height:402px;">
+				<img src="<empty name='vo.thumb'>__PC__/images/a1.jpg<else/>{{$vo.thumb}}</empty>" style="width:595px;height:402px;"/>
+			</div>
+			<div class="user_con_main_right fl" style="position: relative;width:510px;height:402px;">
+				<h2>{{$vo.title|mb_substr=0,100,'utf-8'}}</h2>
+				<p>{{$vo.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</p>
+				<div class="account_lists_read"><a href="{{:url('account/detail')}}?id={{$vo.id}}" style="display: block;color: #fdde96;">阅读全文</a></div>
+			</div>
+		</li>
+		<else/>
+		<li  class="user_con_main_li clear" style="width:1200px;height:402px;">
+			<div class="user_con_main_right fl" style="position: relative;width:510px;height:402px;">
+				<h2>{{$vo.title|mb_substr=0,100,'utf-8'}}</h2>
+				<p>{{$vo.content|htmlspecialchars_decode|strip_tags|mb_substr=0,200,'utf-8'}}</p>
+				<div class="account_lists_read"><a href="{{:url('account/detail')}}?id={{$vo.id}}" style="display: block;color: #fdde96;">阅读全文</a></div>
+			</div>
+			<div class="con_img fl" style="width:595px;height:402px;">
+				<img src="<empty name='vo.thumb'>__PC__/images/a1.jpg<else/>{{$vo.thumb}}</empty>" style="width:595px;height:402px;"/>
+			</div>			
+		</li>
+		</eq>
+		
+		</volist>		
+	</ul>
+	<div class="user_con_more">
+		<div id="lists_more" style="cursor: pointer;">加载更多</div>
+	</div>
+</div>
+</block>

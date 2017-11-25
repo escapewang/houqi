@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人中心-文章页</title>
+	<meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PC__/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PC__/css/base.css"  media="all">
+  <link rel="stylesheet" href="__PC__/css/index.css"  media="all">
+</head>
+<body>
+<div style="background-color: #1e2126;line-height:80px;height: 80px;min-width: 1200px;">
+	<ul class="w1200 clear" >
+	  <li class="layui-nav-item fl" style="margin-left: 0px;"><a href="{{:url('account/index')}}"><img src="__PC__/images/logo.png" height="25px"></a></li>
+	  <li class="layui-nav-item fr">
+	  	<ul  class="layui-nav" style="padding-right: 0;">
+	  		<li class="layui-nav-item"><a href="{{:url('index/index')}}"><span class="nav">首页</span><span class="navitem">INDEX</span></a></li>
+	  	    <li class="layui-nav-item"><a href="{{:url('forum/index')}}"><span class="nav">社区</span><span class="navitem">COMMUNITY</span></a></li>
+	  	    <li class="layui-nav-item <eq name='nav' value='lists'>layui-this</eq>"><a href="{{:url('account/lists')}}"><span class="nav">文章</span><span class="navitem">ARTICLE</span></a></li>
+	  	     <empty name="Think.session.phone">
+	  	     	<li class="layui-nav-item"><a href="{{:url('reg/login')}}"><span class="nav">登录/注册</span><span class="navitem">LOGIN/REGISTER</span></a></li>
+
+	  	     <else/>
+	  	     
+	  	     <li class="layui-nav-item <eq name='nav' value='account'>layui-this</eq>" style="margin-left: 0;">
+			    <a href="javascript:;" style="height: 80px;position: relative;top:10px;"><img src="__PC__/images/img.png" class="layui-nav-img">我</a>
+			    <dl class="layui-nav-child" >
+			    	<dd><a href="{{:url('account/index')}}">个人中心</a></dd>
+			      <dd><a href="{{:url('my/index')}}">修改资料</a></dd>
+			
+			      <dd><a href="javascript:;" class="logout">退出</a></dd>
+			    </dl>
+			  </li>
+			  <li class="layui-nav-item" style="">
+			  	<a href="{{:url('my/pub')}}" style="height: 80px;padding:0;position: relative;top:10px;"><img src="__PC__/images/3.png"/></a>
+			  </li>
+			  </empty>
+	  	</ul>
+	  </li>
+	  
+	</ul>
+</div>
+<div class="banner">
+	<img src="__PC__/images/banner.jpg" width="100%" />
+</div>
+<empty name="msg">
+<div class="userinfo">
+	<div class="userinfo_1 w1200 clear">
+		<div class="userinfo_1_top"><img src="__PC__/images/img.png"></div>
+		<div class="userinfo_1_right fr">
+			<empty name="Think.session.phone">
+			<a style="width:30px;">
+					<img src="__PC__/images/msg.png" width="18"/>
+				</a>
+				<a style="width: 78px;">私信</a>
+				<a  style="width: 78px;background-color:#ffbc22;color:#fff;border:1px solid #ffbc22;">+关注</a>
+			<else/>
+			<a style="width:30px;"><img src="__PC__/images/wm.png" width="18"></a>
+			<a style="width: 78px;">换背景</a>
+			<a href="{{:url('my/index')}}" style="width: 78px;">修改资料</a>
+		    </empty>
+		</div>
+	</div>
+	<div class="w1200 userinfo_2">
+		<div class="userinfo_2_1">
+			<h3>{{$userone.username}}</h3>
+		</div>
+		<div class="userinfo_2_2">
+			<foreach name='uarr' item="vo" key="k">
+			<button class="layui-btn layui-btn-mini layui-btn-normal">{{$vo}}</button>
+			<!--<button class="layui-btn layui-btn-mini layui-btn-normal" style="background-color: #aedddb;">剪辑师</button>
+			<button class="layui-btn layui-btn-mini layui-btn-normal" style="background-color: #d5d9ec;">导演</button>-->
+		    </foreach>
+		</div>
+		<div class="userinfo_2_3">
+			<span style="margin-left: 0;">年龄 &nbsp;{{$userone.age}}</span>
+			<span>粉丝 &nbsp;{{$userc}}</span>
+			<span>关注 &nbsp;{{$cuser}}</span>
+			<span style="position: relative;"><img src="__PC__/images/uimg.png" class="setimg">{{$userone.zhiwei}}</span>
+			<span style="position: relative;"> <img src="__PC__/images/gps.png" class="setimg">{{$uaddr}}</span>
+		</div>
+		<div class="userinfo_2_4">
+			<empty name="Think.session.userid">
+			<a href="{{:url('account/index')}}?uid={{$Think.get.uid}}" <eq name='type' value='index'>class="useron"</eq> style="margin-left: 0;">作品</a>
+			<a href="{{:url('account/content')}}?uid={{$Think.get.uid}}" <eq name='type' value='content'>class="useron"</eq>>文章</a>
+			<a href="{{:url('account/love')}}?uid={{$Think.get.uid}}" <eq name='type' value='love'>class="useron"</eq>>喜欢</a>
+			<a href="{{:url('account/loc')}}?uid={{$Think.get.uid}}" <eq name='type' value='loc'>class="useron"</eq>>圈子</a>
+			<a href="{{:url('account/info')}}?uid={{$Think.get.uid}}" <eq name='type' value='info'>class="useron"</eq>>简介</a>
+			<else/>
+			<a href="{{:url('account/index')}}" <eq name='type' value='index'>class="useron"</eq> style="margin-left: 0;">作品</a>
+			<a href="{{:url('account/content')}}" <eq name='type' value='content'>class="useron"</eq>>文章</a>
+			<a href="{{:url('account/love')}}" <eq name='type' value='love'>class="useron"</eq>>喜欢</a>
+			<a href="{{:url('account/loc')}}" <eq name='type' value='loc'>class="useron"</eq>>圈子</a>
+			<a href="{{:url('account/info')}}" <eq name='type' value='info'>class="useron"</eq>>简介</a>
+		    </empty>
+		</div>
+	</div>
+	
+</div>
+<div class="user_con">
+	<block name="usercontent"></block>
+</div>
+<else/>
+<div class="user_msg">
+	<block name="usercontent"></block>
+</div>
+</empty>
+
+<div class="footer">
+	<div class="w1200 footer_main">
+		<div class="footer_left"><img src="__PC__/images/logo.png" height="25px"></div>
+		<div class="footer_middle">
+			<a href="{{:url('index/index')}}">首页</a>
+			<span>|</span>
+			<a href="">制作人中心</a>
+			<span>|</span>
+			<a href="">制作公司</a>
+			<span>|</span>
+			<a href="{{:url('forum/index')}}">社区动态</a>
+			<span>|</span>
+			<a href="{{:url('account/lists')}}">文章</a>
+		</div>
+		<div class="footer_right">
+			<a href=""><img src="__PC__/images/wx.png" /></a>
+			<a href=""><img src="__PC__/images/wb.png" /></a>
+		</div>
+	</div>
+</div>
+</body>
+<script src="__PC__/jquery-1.9.1.min.js" charset="utf-8"></script>
+<script src="__PC__/layui.js" charset="utf-8"></script>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+  
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+});
+</script>
+<eq name="type" value="content">
+<script>
+	var page=1;
+	var uid="{{$Think.get.uid}}";
+	$('#content_more').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: '{{:url("account/conlist")}}',
+			data:{page:page,uid:uid},
+			dataType: 'json',
+			success: function(msg){	
+				if(msg.code==0){
+					layer.msg(msg.msg, {icon: 1, anim: 6, time: 1000});return;
+				}
+				if(msg){
+					page=page+1;
+					var str='';
+					var attr='';
+					if("{{$Think.session.userid}}"){
+						for(var i=0;i<msg.length;i++){						
+							str+='<li  class="user_con_main_li clear"><div class="con_img fl"><img src="'+msg[i]['thumb']+'" /></div><a href="{{:url("account/detail")}}?id='+msg[i]["id"]+'"><div class="user_con_main_right fl"><h2>'+msg[i].title+'</h2><div>'+msg[i]["content"]+'</div></div></a></li>';
+						}
+					}else{
+						for(var i=0;i<msg.length;i++){						
+							str+='<li  class="user_con_main_li clear"><div class="con_img fl"><img src="'+msg[i]['thumb']+'" /></div><a href="{{:url("account/detail")}}?id='+msg[i]["id"]+'"><div class="user_con_main_right fl" style="position:relative;"><h2>'+msg[i].title+'</h2><div>'+msg[i]["content"]+'</div><div class="mt12" style="position: absolute;bottom:50px;"><span><img src="'+msg[i].userhead+'" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">'+msg[i].name+'</span></div></div></a></li>';
+						}
+					}
+					
+					$("#content_ul").append(str);
+				}else{			
+	                layer.msg('没有了', {icon: 1, anim: 6, time: 1000});
+				}
+			},
+			error:function(msg) {
+			}
+		});
+	});	
+</script>
+</eq>
+<eq name="type" value="index">
+<script>
+	var page=1;
+	var zhiwei="{{$userone.zhiwei}}";
+	$('#more_film').click(function(){
+		var uid=$('#more_film').attr('data-id');
+		$.ajax({
+			type: 'POST',
+			url: '{{:url("account/filmlist")}}',
+			data:{page:page,uid:uid},
+			dataType: 'json',
+			success: function(msg){	
+				if(msg.code==0){
+					layer.msg(msg.msg, {icon: 1, anim: 6, time: 1000});return;
+				}
+				if(msg){
+					page=page+1;
+					var str='';
+					var attr='';
+					if("{{$Think.session.userid}}"){
+						for(var i=0;i<msg.length;i++){
+							if(i%3==2){
+								str+='<li  class="user_index_li fl" style="margin-right: 0;"><a href="{{:url("forum/film")}}?id='+msg[i].id+'"><div class="index_img"><img src="'+msg[i].prourl+'" /><div class="index_img_bg"></div><div class="index_img_bg_bottom"><span class="index_img_bg_1">'+msg[i].mtype+'</span></div></div><div class="user_index_li_bottom"><h2>'+msg[i].pname+'</h2><div class="mt12"><span>片中职务：</span><span style="font-weight: bold;color:#353a40;">'+msg[i].zhiwei+'</span></div><div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>'+msg[i].count+'</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>'+msg[i].love+'</span></div></div></a></li>';
+						
+							}else{
+								str+='<li  class="user_index_li fl" ><a href="{{:url("forum/film")}}?id='+msg[i].id+'"><div class="index_img"><img src="'+msg[i].prourl+'" /><div class="index_img_bg"></div><div class="index_img_bg_bottom"><span class="index_img_bg_1">'+msg[i].mtype+'</span></div></div><div class="user_index_li_bottom"><h2>'+msg[i].pname+'</h2><div class="mt12"><span>片中职务：</span><span style="font-weight: bold;color:#353a40;">'+msg[i].zhiwei+'</span></div><div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>'+msg[i].count+'</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>'+msg[i].love+'</span></div></div></a></li>';
+										
+							}
+						}
+					}else{
+						for(var i=0;i<msg.length;i++){
+							if(i%3==2){
+								str+='<li  class="user_index_li fl" style="margin-right: 0;"><a href="{{:url("forum/film")}}?id='+msg[i].id+'"><div class="index_img"><img src="'+msg[i].prourl+'" /><div class="index_img_bg"></div><div class="index_img_bg_bottom"><span class="index_img_bg_1">'+msg[i].mtype+'</span></div></div><div class="user_index_li_bottom"><h2>'+msg[i].pname+'</h2><div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>'+msg[i].count+'</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>'+msg[i].love+'</span></div><div class="mt12"><span><img src="'+msg[i].userhead+'" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">'+msg[i].name+'</span>&nbsp;&nbsp;&nbsp;&nbsp;'+msg[i].zhiwei+'</div></div></a></li>';
+						
+							}else{
+								str+='<li  class="user_index_li fl" ><a href="{{:url("forum/film")}}?id='+msg[i].id+'"><div class="index_img"><img src="'+msg[i].prourl+'" /><div class="index_img_bg"></div><div class="index_img_bg_bottom"><span class="index_img_bg_1">'+msg[i].mtype+'</span></div></div><div class="user_index_li_bottom"><h2>'+msg[i].pname+'</h2><div class="mt12"><span>播放</span>&nbsp;&nbsp;<span>'+msg[i].count+'</span>&nbsp;|&nbsp;<span>喜欢</span>&nbsp;&nbsp;<span>'+msg[i].love+'</span></div><div class="mt12"><span><img src="'+msg[i].userhead+'" style="width:22px;height:22px;border-radius: 11px;"/></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:#353a40;">'+msg[i].name+'</span>&nbsp;&nbsp;&nbsp;&nbsp;'+msg[i].zhiwei+'</div></div></a></li>';
+										
+							}
+						}
+					}
+					
+					$("#film_ul").append(str);
+				}else{			
+	                layer.msg('没有了', {icon: 1, anim: 6, time: 1000});
+				}
+			},
+			error:function(msg) {
+			}
+		});
+	});	
+</script>
+</eq>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+	var layer = layui.layer
+	$('.logout').click(function(){
+		loading = layer.load(2, {
+		    shade: [0.2,'#000'] //0.2透明度的白色背景
+		});
+		
+		var locationurl="{{:url('reg/login')}}";
+	    $.getJSON("{{:url('reg/logout')}}",function(data){
+	      if(data.code == 200){
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+	        	 location.href = locationurl;
+	        });
+	      }else{
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });
+	})
+})
+</script>
+</html>

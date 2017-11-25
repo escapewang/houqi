@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人中心-文章页</title>
+	<meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PC__/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PC__/css/base.css"  media="all">
+  <link rel="stylesheet" href="__PC__/css/index.css"  media="all">
+  <style>
+  	#address select{
+  		height:40px;border:1px solid #dbdbdb;
+  		margin-right:20px;
+  	}
+  </style>
+</head>
+<body>
+<div style="background-color: #1e2126;line-height:80px;height: 80px;min-width: 1200px;">
+	<ul class="w1200 clear layui-nav" style="padding:0;">
+	  <li class="layui-nav-item fl" style="margin-left: 0px;height:70px;position: relative;top:10px;"><a href="{{:url('account/index')}}" style="padding:0;"><img src="__PC__/images/logo.png" height="25px"></a></li>
+	  <li class="layui-nav-item fl"><a href=""><span class="nav" style="font-size: 17px;">账号设置</span><span class="navitem" style="font-size: 12px;">IACCOUNT SETTING</span></a></li>
+	  <li class="layui-nav-item fr"><a href="{{:url('account/index')}}" class=""><span class="nav" style="font-size: 17px;">返回</span><span class="navitem" style="font-size: 12px;">RETURN</span></a></li> 
+	  
+	</ul>
+</div>
+
+<div class="my_common" style="width: 100%;background-color: #f2f2f2;min-width: 1200px;">
+	<div class="w1200" style="padding-top: 60px;overflow: hidden;padding-bottom: 100px;">
+		<div class="my_common_left fl">
+		   <ul class="my_common_left_main">
+		   	    <li class="my_common_left_main_li">
+		   	    	<a href="{{:url('my/index')}}" <eq name="my" value="index">class="my_active"</eq>>个人资料</a>
+		   	    </li>
+		   	    <li class="my_common_left_main_li">
+		   	    	<a href="{{:url('my/ver')}}" <eq name="my" value="ver">class="my_active"</eq>>身份认证</a>
+		   	    </li>
+		   	    <li class="my_common_left_main_li">
+		   	    	<a href="{{:url('my/pub')}}" <eq name="my" value="pub">class="my_active"</eq>>作品上传</a>
+		   	    </li>
+		   </ul>
+	    </div>
+		<block name="bbscontent"></block>
+	</div>
+</div>
+
+<div class="footer">
+	<div class="w1200 footer_main">
+		<div class="footer_left"><img src="__PC__/images/logo.png" height="25px"></div>
+		<div class="footer_middle">
+			<a href="{{:url('index/index')}}">首页</a>
+			<span>|</span>
+			<a href="">制作人中心</a>
+			<span>|</span>
+			<a href="">制作公司</a>
+			<span>|</span>
+			<a href="{{:url('forum/index')}}">社区动态</a>
+			<span>|</span>
+			<a href="{{:url('account/lists')}}">文章</a>
+		</div>
+		<div class="footer_right">
+			<a href=""><img src="__PC__/images/wx.png" /></a>
+			<a href=""><img src="__PC__/images/wb.png" /></a>
+		</div>
+	</div>
+</div>
+</body>
+<script src="__PC__/jquery-1.9.1.min.js" charset="utf-8"></script>
+<script src="__PC__/layui.js" charset="utf-8"></script>
+<script src="__PC__/select.js"></script>
+<script src="__PC__/jquery.provincesCity.js" type="text/javascript"></script>
+<script src="__PC__/provincesdata.js" type="text/javascript"></script>
+<script>
+layui.use('element', function(){
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+  
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+});
+</script>
+</html>
+<script>
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#upuserhead'
+    ,url: '{{:url("my/upuserhead")}}'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('.my_index_right_my_img').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code == 200){
+      	$('#userhead').val(res.headpath);
+      	return layer.msg('上传成功', {icon: 1, anim: 6, time: 1000});        
+      }else{
+      	return layer.msg(res.msg);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  }); 
+});
+</script>
+<script type="text/javascript">
+	$(function(){
+		$("#date").selectDate()
+		
+		$("#days").focusout(function(){
+			var year = $("#year option:selected").html()
+			var month = $("#month option:selected").html()
+			var day = $("#days option:selected").html()
+			console.log(year+month+day)
+		})
+		
+	});
+	$(function(){
+		$("#address").ProvinceCity();
+	});
+	
+</script>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+	var layer = layui.layer
+	$('.logout').click(function(){
+		loading = layer.load(2, {
+		    shade: [0.2,'#000'] //0.2透明度的白色背景
+		});
+		
+		var locationurl="{{:url('reg/login')}}";
+	    $.getJSON("{{:url('reg/logout')}}",function(data){
+	      if(data.code == 200){
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+	        	 location.href = locationurl;
+	        });
+	      }else{
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });
+	})
+})
+</script>
+<script>
+layui.use(['form'], function(){
+  var form = layui.form
+  ,layer = layui.layer,jq=layui.jquery;
+  $('#userupdata').click(function(){
+		loading = layer.load(2, {
+		    shade: [0.2,'#000'] //0.2透明度的白色背景
+		});
+		var userhead=$('#userhead').val();
+		var nick_name=$('#nick_name').val();
+		var name=$('#name').val();
+		var sex_val=$('#sex_val').val();
+		var phone_val=$('#phone_val').val();
+		var hangye=$('#hangye').val();
+		var year=$('#year').val();
+		var month=$('#month').val();
+		var days=$('#days').val();
+		var addr1=$('#address select').eq(0).val();
+		var addr2=$('#address select').eq(1).val();
+		var addr3=$('#address select').eq(2).val();
+		var address=addr1+','+addr2+','+addr3;
+		console.log(address);
+		var zhiwei=$('#zhiwei').val();
+		var company=$('#company').val();
+		var tech=$('#tech').val();
+		var info=$('#info').val();
+		var birth=year+'-'+month+'-'+days;
+		var param={name:name,userhead:userhead,info:info,tech:tech,company:company,zhiwei:zhiwei,userhome:address,birth:birth,username:nick_name,sex:sex_val,mobile:phone_val,hangye:hangye};
+		jq.post("{{:url('my/upuser')}}",param,function(data){
+	      if(data.code == 200){
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+	        	 location.reload();
+	        });
+	      }else{
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });
+	    
+	});
+	$('#identysub').click(function(){
+		loading = layer.load(2, {
+		    shade: [0.2,'#000'] //0.2透明度的白色背景
+		});
+		var identy=$('.identyc').val();
+		var year=$('#year').val();
+		var zhiye=$('#zhiye').val();
+		var param={identy:identy,year:year,zhiye:zhiye};
+		jq.post("{{:url('my/identy')}}",param,function(data){
+	      if(data.code == 200){
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+	        	 location.reload();
+	        });
+	      }else{
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });	
+	});
+	
+	$('#sub_pro').click(function(){
+		loading = layer.load(2, {
+		    shade: [0.2,'#000'] //0.2透明度的白色背景
+		});
+		var fengmian=$('#fengmian').val();
+		var pro_name=$('#pro_name').val();
+		var url_pro=$('#url_pro').val();
+		var param={fengmian:fengmian,pro_name:pro_name,url_pro:url_pro};
+		jq.post("{{:url('my/makecon')}}",param,function(data){
+	      if(data.code == 200){
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+	        	 location.reload();
+	        });
+	      }else{
+	        layer.close(loading);
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });	
+	});
+});
+$('.uphome').click(function(){
+	$('#address_val').hide();
+	$('#address').css('display','inline-block');
+});
+$('.upbirth').click(function(){
+	$('#update_val').hide();
+	$('#date').css('display','inline-block');
+});
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload
+  ,layer = layui.layer;
+  
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#upidentity'
+    ,url: '{{:url("account/upload")}}'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#uploadcon').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==200){
+      	var str="<img src='"+res.headpath+"'/>";
+      	$('.identyinfo').html(str);
+      	$('.identyc').val(res.headpath);
+      	return layer.msg('上传成功', {icon: 1, anim: 6, time: 1000});
+      }
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  
+});
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload
+  ,layer = layui.layer;
+  
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#upduct'
+    ,url: '{{:url("account/upload")}}'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('.my_pub_1_2 img').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code==200){      	
+      	$('.my_pub_1_2 img').attr('src', res.headpath);
+      	$('#fengmian').val(res.headpath);
+      	return layer.msg('上传成功', {icon: 1, anim: 6, time: 1000});
+      }
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  
+});
+</script>

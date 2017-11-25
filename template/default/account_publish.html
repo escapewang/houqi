@@ -1,0 +1,40 @@
+<extend name="forum_common" />
+<block name="bbscontent">	
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div style="position: relative;top:20px;left: 0;"><div style="font-size: 24px;color:#1e2126">文章</div><div style="font-size: 12px;color:#adadb1">ARTICLE</div></div>
+			<div class="user_con_pl_right" style="width:100px;height:40px;line-height: 40px;top:27px;">发布</div>
+		</div>
+			
+	</div>
+	<div class="forum_lists">		
+		<div class="user_love w1200" style="padding-top:60px;height:1000px;position: relative;">
+			<div class="forum_publish_xj" id="uploadcon">
+				<img src="__PC__/images/xj.png" style="max-height: 100px;"/>
+			</div>
+			<form method="post" class="layui-form forum_publish_form" action="">
+			  <input type="hidden" name="path" lay-verify="path"  autocomplete="off" placeholder="" class="layui-input upfilepath">
+			  <div class="layui-form-item">
+			    <label class="layui-form-label"></label>
+			    <div class="layui-input-block">
+			      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+			    </div>
+			  </div>			  
+			  
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label"></label>
+			    <div class="layui-input-block" style="width:925px;height:420px;">
+			      <textarea name="content" lay-verify="content" id="myEditor" style="width:925px;height:320px;"></textarea>
+			    </div>
+			  </div>
+			  <div class="layui-form-item" style="position: absolute;top:-87px;right:0;">
+			    <div class="layui-input-block">
+			      <!--<button class="layui-btn" lay-submit="" lay-filter="content_sub">立即提交</button>-->
+			      <input type="button" class="layui-btn" lay-submit="" lay-filter="content_sub" value="发布" style="background-color: #ffbc22;width:100px;height:40px;line-height: 40px;text-align: center;"/>
+			    </div>
+			  </div>
+			</form>
+		</div>	
+		
+	</div>
+</block>

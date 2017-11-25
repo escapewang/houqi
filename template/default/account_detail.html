@@ -1,0 +1,75 @@
+<extend name="forum_common" />
+<block name="bbscontent">	
+	<div class="w1200">
+		<div class="user_con_pl" style="height:110px;">
+			<div style="position: relative;top:20px;left: 0;line-height: 22px;">
+				<div><span class="detail_head_btn_1">导演</span><span class="detail_head_btn_2">原创</span></div>
+				<div style="color:#333f51">{{$userone.username}}</div>
+				<div style="color:#b4b4b4">发布于：{{$cone.time|date="Y-m-d",###}}</div>
+			</div>
+			<div class="detail_head_btn_right" >
+			  <div style="font-size: 16px;color:#2c323d;margin-bottom: 6px;"></div>
+			  <div style="font-size: 13px;color:#bfbfc0;margin-bottom: 25px;"><!--万大网络科技有限公司--></div>
+			  <div class="detail_head_btn_right_b <empty name='Think.session.userid'>nologin</empty>" style="cursor: pointer;">+关注</div>
+			</div>
+		</div>
+			
+	</div>
+	<div class="forum_comment_main" style="background-color: #f4f4f4;">
+		<div class="w1200 account_detail_main">
+			<div class="account_detail_conente_title">{{$cone.title}}</div>
+			<div class="account_detail_conente">
+				
+				<div style="border-bottom: 1px solid #e9e9e9;padding-bottom: 50px;">
+					{{$cone.content|htmlspecialchars_decode}}
+				</div>
+			</div>
+			<div style="width:350px;position: absolute;right:135px;bottom: 40px;">
+				<span><img src="__PC__/images/l1.png"/></span><span class="ml5">评论：{{$connum}}</span>
+				<empty name='Think.session.email'>
+				<span class="ml40 nologin" data="{{$cone.id}}" style="cursor: pointer;"><img src="__PC__/images/love1.png"/></span><span class="ml5">喜欢：{{$lnums}}</span>
+				<else/>
+				<span class="ml40 lovecontent" data="{{$cone.id}}" style="cursor: pointer;"><img src="<notempty name='lone'>__PC__/images/l3.png<else/>__PC__/images/love1.png</notempty>"/></span><span class="ml5">喜欢：{{$lnums}}</span>
+				</empty>
+				<span class="ml40"><img src="__PC__/images/l2.png"/></span><span class="ml5">转发：67</span>
+			</div>
+		</div>
+		
+		<div class="forum_comment w1200" style="background-color: #fff;margin-top: 20px;">
+			<div class="forum_comment_top">
+				<div class="forum_comment_top_1">评论<span>({{$commentnum}})</span></div>
+				
+			</div>
+			<div class="forum_comment_middle">
+				<div class="forum_comment_middle_1" style="margin-bottom: 70px;">
+					<img src="<empty name='userone.userhead'>__PC__/images/img_01.jpg<else/>{{$userone.userhead}}</empty>" class="forum_comment_middle_img"/>
+					<form action="" method="post" class="layui-form">
+						<input type="hidden" value="{{$cone.id}}" name="cid" lay-verify="cid" class="cid"/>
+						<input type="hidden" value="0" name="tid" lay-verify="tid"/>
+						<input type="hidden" value="0" name="mid" lay-verify="mid"/>
+						<textarea name="comments" lay-verify="comments" class="forum_comment_middle_text" autocomplete="off" placeholder="请输入评论"></textarea>
+						<div class="forum_comment_top_2" style="top:155px;"><input type="button" value="发表评论" <empty name='Think.session.email'>class="nologin"<else/>lay-submit="" lay-filter="comment_sub"</empty> style="color:#fff;width:90px;height:36px;cursor: pointer;line-height:36px;background-color: #ffbc22;border:none;"/></div>
+					</form>
+				</div>
+				<ul class="forum_comment_bottom">
+					<foreach name="commentval" item="commentval">
+					<li  class="forum_comment_bottom_li">
+						<div class="forum_comment_bottom_li_1"> 
+							<img src="<empty name='commentval.uhead'>__PC__/images/img_01.jpg<else/>{{$commentval.uhead}}</empty>" class="forum_comment_middle_img"/>
+						</div>
+						<div class="forum_comment_bottom_li_2">
+							<div class="forum_comment_bottom_li_2_1">{{$commentval.uname}}<span>{{$commentval.time|date="m-d H:i",###}}</span></div>
+							<div class="forum_comment_bottom_li_2_2"></div>
+							<div class="forum_comment_bottom_li_2_3"><a href="javascript:;" class="commentslist" data="{{$commentval.id}}">{{$commentval.content}}</a></div>
+							<div class="forum_comment_bottom_li_2_4"><span class="recomment" style="cursor: pointer;" data="{{$commentval.id}}">回复({{$commentval.cnums}})</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="dopraise" style="cursor: pointer;" data="{{$commentval.id}}">赞({{$commentval.praise}})</span></div>
+						</div>
+					</li>
+					</foreach>
+					<li class="forum_comment_bottom_li">
+						<div class="forum_comment_bottom_more"><a href="{{:url('account/detail')}}?id={{$Think.get.id}}&page=all" style="color:#c1c1c1;">展开全部>></a></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</block>

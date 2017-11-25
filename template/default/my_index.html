@@ -1,0 +1,105 @@
+<extend name="my_common" />
+<block name="bbscontent">	
+	<div class="my_index_right fl">
+		<form  method="post" action="">
+		<div class="my_index_right_my">个人资料</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">头像<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2"><img src="<empty name='uone.userhead'>__PC__/images/cimgpng.png<else/>{{$uone.userhead}}</empty>" class="my_index_right_my_img"/></div>
+			<div class="my_index_right_my_3"><span style="color:#ffc84a;cursor: pointer;" id="upuserhead">修改头像</span>(仅支持JPG、PNG文件小于6M)</div>	
+		</div>
+		<input type="hidden" name="userhead"  value="{{$uone.userhead}}" id="userhead"/>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">昵称<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2">
+				<input type="text" name="nickname" id="nick_name" lay-verify="nickname" autocomplete="off" value="{{$uone.username}}" class="my_index_right_my_nickname" />
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">姓名<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2">
+				<input type="text" name="name" id="name" value="{{$uone.name}}" class="my_index_right_my_name" />
+			</div>
+			<div class="my_index_right_my_1" style="margin-left: 60px;">性别</div>
+			<div class="my_index_right_my_2" style="margin-left: 20px;">
+				<select name="sex" class="my_index_right_my_name" style="font-size: 18px;" id="sex_val">
+					<option></option>
+					<option value="2" <eq name='uone.sex' value='2'>selected</eq> >男</option>
+					<option value="1" <eq name='uone.sex' value='1'>selected</eq>>女</option>
+				</select>				
+			</div>
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">电话<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2">
+				<input type="text" name="phone" id="phone_val" value="{{$uone.mobile}}" class="my_index_right_my_phone" />
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">邮箱<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2">
+				<input type="text" value="{{$uone.email}}" readonly="readonly" name="email" class="my_index_right_my_phone" />
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">行业<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2">
+				<input type="text" name="hangye" id="hangye" value="{{$uone.hangye}}" class="my_index_right_my_phone" />
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">生日</div>
+			<notempty name='uone.birth'><div id="update_val" style="margin-left: 88px;display: inline-block;"><input type="text" name="hangye" value="{{$uone.birth}}" readonly="readonly" class="my_index_right_my_name"/><a href="javascript:;" class="upbirth"> 修改</a></div></notempty>
+			<div id="date" style="margin-left: 90px;<empty name='uone.birth'>display: inline-block;<else/>display: none;</empty>">
+				<select name="year" id="year" style="height:40px;border:1px solid #dbdbdb">
+					<option value="">选择年份</option>
+					
+				</select>
+				<select name="month" id="month" style="height:40px;border:1px solid #dbdbdb;margin-left: 20px;">
+					<option value="">选择月份</option>
+				</select>
+				<select id="days" class="day" style="height:40px;border:1px solid #dbdbdb;margin-left: 20px;">
+					<option value="">选择日期</option>
+				</select>
+			</div>
+				
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">所在地区</div>
+			<notempty name='uone.userhome'><div id="address_val" style="margin-left: 53px;display: inline-block;"><input type="text" name="" value="{{$uone.userhome}}" readonly="readonly" class="my_index_right_my_name"/><a href="javascript:;" class="uphome"> 修改</a></div></notempty>
+			<div class="my_index_right_my_2" style="margin-left: 53px;<notempty name='uone.userhome'>display: none;</notempty>" id="address"></div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">职位　　<!--<span style="color:red;">*</span>--></div>
+			<div class="my_index_right_my_2" style="margin-left: 53px;">
+				<input type="text" name="zhiwei" id="zhiwei" value="{{$uone.zhiwei}}" class="my_index_right_my_phone" />
+			</div>
+			<!--<div class="my_index_right_my_1" style="margin-left: 120px;">职位<span style="color:red;">*</span></div>
+			<div class="my_index_right_my_2" style="margin-left: 30px;">
+				<input type="text" name="phone" class="my_index_right_my_age" style="width:260px;"/>
+			</div>-->
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">在职公司</div>
+			<div class="my_index_right_my_2" style="margin-left: 53px;">
+				<input type="text" name="company" id="company" value="{{$uone.company}}" class="my_index_right_my_phone" />
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">技能标签</div>
+			<div class="my_index_right_my_2" style="margin-left: 53px;">
+				<textarea  name="tech" id="tech" placeholder="多个请用、分开" class="my_index_right_my_base" >{{$uone.tech}}</textarea>
+			</div>			
+		</div>
+		<div class="my_index_right_my_div">
+			<div class="my_index_right_my_1">个人简介</div>
+			<div class="my_index_right_my_2" style="margin-left: 53px;">
+				<textarea  name="info" id="info" class="my_index_right_my_info" >{{$uone.info}}</textarea>
+			</div>			
+		</div>
+		<div class="my_index_right_my_submit">
+			<input type="button" value="保存" lay-submit="" lay-filter="userupdata" id="userupdata"/>
+		</div>
+	</form>
+	</div>
+</block>

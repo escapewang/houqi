@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>回复列表</title>
+		<link rel="stylesheet" href="__PC__/css/layui.css"  media="all">
+		  <link rel="stylesheet" href="__PC__/css/base.css"  media="all">
+		  <link rel="stylesheet" href="__PC__/css/index.css"  media="all">
+	</head>
+	<body style="min-width: 800px;">
+		
+		<ul class="forum_comment_bottom" style="padding-left:50px;padding-right: 50px;width:760px;margin:0 auto;">
+			<foreach name="comments" item="commentval">
+			<li  class="forum_comment_bottom_li">
+				<div class="forum_comment_bottom_li_1"> 
+					<img src="<empty name='commentval.uhead'>__PC__/images/img_01.jpg<else/>{{$commentval.uhead}}</empty>" class="forum_comment_middle_img"/>
+				</div>
+				<div class="forum_comment_bottom_li_2" style="width:660px;">
+					<div class="forum_comment_bottom_li_2_1">{{$commentval.uname}}<span>{{$commentval.time|date="m-d H:i",###}}</span></div>
+					<div class="forum_comment_bottom_li_2_2"></div>
+					<div class="forum_comment_bottom_li_2_3"><a href="javascript:;" class="commentslist" data="{{$commentval.id}}">{{$commentval.content}}</a></div>
+					<div class="forum_comment_bottom_li_2_4"><span class="recommentfilm" style="cursor: pointer;" data="{{$commentval.id}}">回复({{$commentval.cnums}})</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="dopraise" style="cursor: pointer;" data="{{$commentval.id}}">赞({{$commentval.praise}})</span></div>
+				</div>
+			</li>
+			</foreach>
+			<li class="forum_comment_bottom_li">
+				<div class="forum_comment_bottom_more"><a href="{{:url('account/filmlists')}}?id={{$Think.get.id}}&page=all" style="color:#c1c1c1;">展开全部>></a></div>
+			</li>
+		</ul>
+	</body>
+</html>
+<script src="__PC__/jquery-1.9.1.min.js" charset="utf-8"></script>
+<!--<script src="__PC__/layui.js" charset="utf-8"></script>-->
+<script src="__PC__/layer/layer.js" charset="utf-8"></script>
+<script>
+	$('.recommentfilm').click(function(){
+		var tid=$(this).attr('data');
+		var mid="{{$mid}}";		
+		layer.prompt({title: '评论回复', formType: 2}, function(text, index){
+	    layer.close(index);
+	    if(!text){
+	    	layer.msg('请输入评论内容！', {icon: 2, anim: 6, time: 1000});
+	    }
+	    var param={tid:tid,comments:text,cid:0,mid:mid};
+	    $.post("{{:url('account/detail')}}",param,function(data){
+	      if(data.code == 200){
+	        
+	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+	        	 location.reload();
+	        });
+	      }else{
+	        
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });
+	    
+	  });
+	});
+	$('.dopraise').click(function(){
+		var id=$(this).attr('data');			
+	    var param={id:id};
+	    $.post("{{:url('account/dopraise')}}",param,function(data){
+	      if(data.code == 200){	        
+	        layer.msg('点赞成功', {icon: 1, time: 1000}, function(){
+	        	 location.reload();
+	        });
+	      }else{
+	        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+	      }
+	    });
+	});
+	$('.commentslist').click(function(){
+		var id=$(this).attr('data');			
+	    var param={id:id};
+	    var url="{{:url('account/filmlists')}}?id="+id;
+	    layer.open({
+	      type: 2,
+	      title: '评论列表',
+	      shadeClose: true,
+	      shade: false,
+	      maxmin: true, 
+	      area: ['98%', '96%'],
+	      content: url
+	    });
+	});
+</script>

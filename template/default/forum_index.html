@@ -1,0 +1,183 @@
+<extend name="forum_common" />
+<block name="bbscontent">	
+	<div class="forum_banner">
+		<img src="__PC__/images/fournindex.jpg" />
+	</div>
+	<div class="forum_index w1200">
+		<div class="forum_index_1">
+			<div class="forum_index_1_title">技术交流</div>
+			<div class="forum_index_1_line"></div>
+			<div class="forum_index_1_en">TECHNICAL EXCHANGE</div>
+		</div>
+		<div class="forum_index_1_main w1200" style="margin-top: 90px;">
+			<div class="forum_index_1_main_1 fl">
+				<div class="forum_index_1_main_img"> <img src="__PC__/images/6555.png"/></div>
+				<div class="forum_index_1_main_1_main">
+					<div class="forum_index_1_main_1_title">里vi技术成熟还需要几天</div>
+					<div class="forum_index_1_main_1_date">2017-07-12 发布</div>
+					<div class="forum_index_1_main_1_con">人人技术就急急急急急急顶顶顶顶顶顶顶顶顶不不不不不不</div>
+				</div>
+			</div>
+			<div class="forum_index_1_main_right fl">
+				<ul class="forum_index_1_main_ul">
+					<li class="forum_index_1_main_li"><span class="forum_index_1_main_li_span">+</span>呜呜呜发反反复复水水水水是丰富</li>
+					<li class="forum_index_1_main_li"><span class="forum_index_1_main_li_span">+</span>呜呜呜发反反复复水水水水是丰富</li>
+					<li class="forum_index_1_main_li"><span class="forum_index_1_main_li_span">+</span>呜呜呜发反反复复水水水水是丰富</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="forum_index w1200">
+		<div class="forum_index_1">
+			<div class="forum_index_1_title">精品推荐</div>
+			<div class="forum_index_1_line"></div>
+			<div class="forum_index_1_en">RECOMMENDED</div>
+		</div>
+		<div class="forum_index_2_main w1200" style="margin-top: 90px;">
+			<notempty name="mone">
+			<div class="forum_index_2">
+				<a href="{{:url('forum/film')}}?id={{$mone.id}}">
+				<img src="{{$mone.prourl}}" />
+				</a>
+			</div>
+			</notempty>
+			<notempty name="mone">
+			<ul class="forum_index_2_ul">
+				<volist name="mval" id="vo" offset="1" length='3'>
+				<li><a href="{{:url('forum/film')}}?id={{$vo.id}}"><img src="{{$vo.prourl}}" /></a></li>
+				</volist>
+			</ul>
+			</notempty>
+		</div>
+	</div>
+	
+	<div class="forum_index w1200">
+		<div class="forum_index_1">
+			<div class="forum_index_1_title">优秀创作人</div>
+			<div class="forum_index_1_line"></div>
+			<div class="forum_index_1_en">OUTSTANDING CREATIVE PEOPLE</div>
+		</div>
+		<div class="forum_index_3_main w1200" style="margin-top: 90px;">
+			<ul class="forum_index_3_main_ul">
+				<li class="forum_index_3_main_li fl">
+					<div class="forum_index_3_main_div">
+						<img src="__PC__/images/forum4.png" />
+					</div>
+					<div class="forum_index_3_main_bottom">
+						<div class="forum_index_3_main_bottom_1">BOUDJDJH</div>
+						<div class="forum_index_3_main_bottom_2">制片人 / 北京</div>
+						<div class="forum_index_3_main_bottom_3">粉丝 &nbsp;<span>323</span> &nbsp;|&nbsp; 关注&nbsp;<span>9</span></div>
+						<div class="forum_index_3_main_bottom_4">钱光线传媒媒体自昨日</div>
+						<div class="forum_index_3_main_bottom_5">关注</div>
+					</div>
+				</li>
+				<li class="forum_index_3_main_li fl">
+					<div class="forum_index_3_main_div">
+						<img src="__PC__/images/forum4.png" />
+					</div>
+					<div class="forum_index_3_main_bottom">
+						<div class="forum_index_3_main_bottom_1">BOUDJDJH</div>
+						<div class="forum_index_3_main_bottom_2">制片人 / 北京</div>
+						<div class="forum_index_3_main_bottom_3">粉丝 &nbsp;<span>323</span> &nbsp;|&nbsp; 关注&nbsp;<span>9</span></div>
+						<div class="forum_index_3_main_bottom_4">钱光线传媒媒体自昨日</div>
+						<div class="forum_index_3_main_bottom_5">关注</div>
+					</div>
+				</li>
+				<li class="forum_index_3_main_li fl">
+					<div class="forum_index_3_main_div">
+						<img src="__PC__/images/forum4.png" />
+					</div>
+					<div class="forum_index_3_main_bottom">
+						<div class="forum_index_3_main_bottom_1">BOUDJDJH</div>
+						<div class="forum_index_3_main_bottom_2">制片人 / 北京</div>
+						<div class="forum_index_3_main_bottom_3">粉丝 &nbsp;<span>323</span> &nbsp;|&nbsp; 关注&nbsp;<span>9</span></div>
+						<div class="forum_index_3_main_bottom_4">钱光线传媒媒体自昨日</div>
+						<div class="forum_index_3_main_bottom_5">关注</div>
+					</div>
+				</li>
+				<li class="forum_index_3_main_li fl" style="margin-right: 0;">
+					<div class="forum_index_3_main_div">
+						<img src="__PC__/images/forum4.png" />
+					</div>
+					<div class="forum_index_3_main_bottom">
+						<div class="forum_index_3_main_bottom_1">BOUDJDJH</div>
+						<div class="forum_index_3_main_bottom_2">制片人 / 北京</div>
+						<div class="forum_index_3_main_bottom_3">粉丝 &nbsp;<span>323</span> &nbsp;|&nbsp; 关注&nbsp;<span>9</span></div>
+						<div class="forum_index_3_main_bottom_4">钱光线传媒媒体自昨日</div>
+						<div class="forum_index_3_main_bottom_5">关注</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="forum_index w1200" style="padding-bottom: 40px;">
+		<div class="forum_index_1">
+			<div class="forum_index_1_title">其他影片</div>
+			<div class="forum_index_1_line"></div>
+			<div class="forum_index_1_en">OTHER FILMS</div>
+		</div>
+		<div class="forum_index_4_main w1200" style="margin-top: 90px;">
+			<notempty name="mval.5">
+			<div class="forum_index_4_main_1 fl" style="margin-right: 30px;">
+				<div style="position: relative;">
+					<a href="{{:url('forum/film')}}?id={{$mval.5.id}}">
+					<img src="{{$mval.5.prourl}}" />
+					<div class="forum_index_4_main_1_bg"></div>
+					<div class="forum_index_4_main_1_bg1">{{$mval.5.mtype}}</div>
+				    </a>
+				</div>
+				<div class="forum_index_4_main_b">
+					
+					<div class="forum_index_4_main_b_1">{{$mval.5.pname}}</div>
+					<div class="forum_index_4_main_b_2">播放 &nbsp;{{$mval.5.count}} &nbsp;|&nbsp; 喜欢 &nbsp;{{$mval.5.love}}</div>
+					<div class="forum_index_4_main_b_3">
+						<img src="{{$mval.5.userhead}}"/><span>{{$mval.5.name}} &nbsp;{{$mval.5.zhiwei}}</span>
+					</div>
+					
+				</div>
+			</div>
+			</notempty>
+			<notempty name="mval.6">
+			<div class="forum_index_4_main_2 fl">
+				<div style="position: relative;">
+					<a href="{{:url('forum/film')}}?id={{$mval.6.id}}">
+					<img src="{{$mval.6.prourl}}" />
+					<div class="forum_index_4_main_2_bg"></div>
+					<div class="forum_index_4_main_2_bg1">{{$mval.6.pdate}}发布</div>
+					</a>
+				</div>
+				<div class="forum_index_4_main_bottom">
+					<div class="forum_index_4_main_bottom_1">{{$mval.6.pname}}</div>
+					<div class="forum_index_4_main_bottom_2">播放 &nbsp;{{$mval.6.count}} &nbsp;|&nbsp; 喜欢 &nbsp;{{$mval.6.love}}</div>
+					<div class="forum_index_4_main_bottom_3">
+						<img src="{{$mval.6.userhead}}"/><span>{{$mval.6.name}} &nbsp;{{$mval.6.zhiwei}}</span>
+					</div>
+				</div>
+			</div>
+			</notempty>
+			<notempty name="mval.4">
+			<div class="forum_index_4_main_1 fl" style="margin-left: 30px;">
+				<div style="position: relative;">
+					<a href="{{:url('forum/film')}}?id={{$mval.4.id}}">
+					<img src="{{$mval.4.prourl}}" />
+					<div class="forum_index_4_main_1_bg"></div>
+					<div class="forum_index_4_main_1_bg1">{{$mval.4.mtype}}</div>
+					</a>
+				</div>
+				<div class="forum_index_4_main_b">
+					<div class="forum_index_4_main_b_1">{{$mval.4.pname}}</div>
+					<div class="forum_index_4_main_b_2">播放 &nbsp;{{$mval.4.count}} &nbsp;|&nbsp; 喜欢 &nbsp;{{$mval.4.love}}</div>
+					<div class="forum_index_4_main_b_3">
+						<img src="{{$mval.4.userhead}}"/><span>{{$mval.4.name}} &nbsp;{{$mval.4.zhiwei}}</span>
+					</div>
+				</div>
+			</div>
+			</notempty>
+		</div>
+	</div>
+	<div class="forum_back">
+		<!--<img src="__PC__/images/back.png" />-->
+	</div>
+</block>

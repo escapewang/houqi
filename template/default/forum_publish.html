@@ -1,0 +1,44 @@
+<extend name="forum_common" />
+<block name="bbscontent">	
+	<div class="w1200">
+		<div class="user_con_pl">
+			<div style="position: relative;top:20px;left: 0;"><div style="font-size: 24px;color:#1e2126">技术交流</div><div style="font-size: 12px;color:#adadb1">TECHNICAL EXCHANGE</div></div>
+			<div class="user_con_pl_right" style="width:100px;height:40px;line-height: 40px;top:27px;">发布</div>
+		</div>
+			
+	</div>
+	<div class="forum_lists">		
+		<div class="user_love w1200" style="padding-top:60px;height:1000px;">
+			<div class="forum_publish_xj">
+				<img src="__PC__/images/xj.png" />
+			</div>
+			<form class="layui-form forum_publish_form" action="">
+			  <div class="layui-form-item">
+			    <label class="layui-form-label"></label>
+			    <div class="layui-input-block">
+			      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+			    </div>
+			  </div>			  
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label"></label>
+			    <div class="layui-input-block">
+			      <textarea placeholder="请输入内容" class="layui-textarea" style="height:300px"></textarea>
+			    </div>
+			  </div>
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label"></label>
+			    <div class="layui-input-block">
+			      <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+			    </div>
+			  </div>
+			  <!--<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+			      
+			    </div>
+			  </div>-->
+			</form>
+		</div>	
+		
+	</div>
+</block>
