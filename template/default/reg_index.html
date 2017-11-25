@@ -127,7 +127,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 	      if(data.code == 200){
 	        layer.close(loading);
 	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
-	          location.href = '{{:url("reg/login")}}';
+	          location.href = '{{:url('reg/login')}}';
 	        });
 	      }else{
 	        layer.close(loading);

@@ -45,7 +45,7 @@ class Reg extends Controller{
     	   $member->username=$data['nickname'];
     	   $member->email=$data['email'];
     	   $member->mobile=$data['phone'];
-    	    $member->password=sha1(md5($data['pass']));
+    	    $member->password=md5($data['pass']);
     	    $member->regtime=date('Y-m-d H:i:s');
     	   $request = Request::instance();
 			$member->usertype=$data['usertype'];
@@ -77,7 +77,7 @@ class Reg extends Controller{
     	   $map['email']=$data['email'];
     	   $user = $member->where($map)->find();
            if($user){
-           	    if($user['password']==sha1(md5($data['pass']))){
+           	    if($user['password']==md5($data['pass'])){
            		    session('phone', $user['mobile']);
     				session('email', $user['email']);
     				session('userid', $user['id']);
@@ -89,16 +89,14 @@ class Reg extends Controller{
     								'id'              => $user['id']
     						]
     				);
-           		return json(array('code' => 200, 'msg' => '登录成功'));
-           	}else{
-           		return json(array('code' => 0, 'msg' => '密码不正确'));
-           	}
+           		   return json(array('code' => 200, 'msg' => '登录成功'));
+           	    }else{
+           		   return json(array('code' => 0, 'msg' => '密码不正确'));
+           	    }
            }else{
            	return json(array('code' => 0, 'msg' => '邮箱不存在，请更换或立即注册'));
            }
-    	   
-    	   
-    	   
+ 
     	}
         return view();
     }

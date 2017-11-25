@@ -21,6 +21,7 @@ class My extends Controller{
     		$this->redirect('reg/login');
     	}
     }    
+      
     /*个人修改显示*/    
     public function index(){
     	$this->assign('my','index'); 
@@ -169,4 +170,8 @@ class My extends Controller{
     		}
     	}
     }
+
+
+
+
 }
