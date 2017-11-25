@@ -6,5 +6,10 @@ use think\Controller;
             // var_dump(config('template.view_path'));
             return view();
         }
+
+        public function add(){
+
+        	return view();
+        }
     }
  
