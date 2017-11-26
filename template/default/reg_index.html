@@ -123,7 +123,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 	    shade: [0.2,'#000'] //0.2透明度的白色背景
 	  });
     jq.post("{{:url('reg/index')}}",param,function(data){
-	    	
+	   
 	      if(data.code == 200){
 	        layer.close(loading);
 	        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
